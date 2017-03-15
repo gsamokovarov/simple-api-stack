@@ -1,0 +1,279 @@
+---
+layout: slide
+title: Scheduled Tasks
+---
+
+section.center
+  h1 👋
+
+section.center
+  img.inline src="images/me-pixel.png"
+
+section.center
+  p: a(href="http://gsamokovarov.com") @gsamokovarov
+
+section.center data-background="#000"
+  h2.white Evening!
+
+section.center
+  img.inline src="images/banitsa.png"
+
+section.center
+  img.inline src="images/ruby.png"
+
+section data-background="https://media.giphy.com/media/AHj0lQstZ9I9W/giphy.gif"
+  img.inline.fragment src="images/rubybanitsa.png"
+
+section.center
+  p: a(href="http://rubybanitsa.com") rubybanitsa.com
+
+section.center
+  p: a(href="http://twitter.com/rubybanitsa") @rubybanitsa
+
+section.center data-background="#F00"
+  p Will repeat at least until we run out of banitsa.
+
+section.center data-background="#F00"
+  p May change them dates and times.
+
+section.center data-background="#F00"
+  p May change locations.
+
+section.center data-background="#F00"
+  p May have presentations.
+
+section.center data-background="#000"
+  h2 Reverse Proxy
+  p.fragment rack + net/http = ❤️
+
+section.center
+  p In a micro-service, API-oriented world, you need an API gateway.
+
+section.center
+  p Or so I'm told<span class="fragment">, I dunno, really.</span>
+
+section
+  h2 Constraints
+  ul
+    li.fragment Locked infrastructure
+    li.fragment Time to market
+
+section.center
+  img.inline src="images/infra.png"
+
+section.center
+  p Infrastructure
+section.center
+  p <strike>Infrastructure</strike>
+section.center
+  p Application
+
+section.center data-background="#000"
+  p Or nginx sucks, right?
+
+section data-background="http://i2.kym-cdn.com/photos/images/newsfeed/000/976/824/913.gif"
+
+section
+  h2 Application
+  ul
+    li.fragment Ruby ❤️
+    li.fragment Easy to prototype
+    li.fragment Easy to change
+    li.fragment Easy to deploy
+
+section.center
+  p: a(href="https://github.com/gsamokovarov/rack-delegate") rack-delegate
+
+section data-background="https://media.giphy.com/media/VTjMuV5o8r4eA/giphy.gif"
+section data-background="https://media.giphy.com/media/VTjMuV5o8r4eA/giphy.gif"
+  p.white.shadow BUT IT DOESN'T SCALE, BRAH!
+
+section data-background="https://media.giphy.com/media/VTjMuV5o8r4eA/giphy.gif"
+  p.white.shadow IT'S SLOWOLOLOLO!
+
+section data-background="https://media.giphy.com/media/T0OUBIXo7nZiU/giphy.gif"
+  p.white.shadow.fragment SO WHAT?
+
+section data-background="https://media.giphy.com/media/T0OUBIXo7nZiU/giphy.gif"
+  p.white.shadow SO FUCKING WHAT?
+
+section data-background="https://media.giphy.com/media/motsIgod3nQ9G/giphy.gif"
+  p.white.shadow.fragment HAS BEEN IN PRODUCTION FOR YEARS!
+
+section.center data-background="https://media.giphy.com/media/G5Sqi8Fm6pXoI/giphy.gif"
+  p.white.shadow.fragment IT'S FINE!
+
+section
+  img.inline.fragment src="images/infra.png"
+
+section.center data-background="#000"
+  h2.white Rack
+
+section.center
+  pre: code.ruby contenteditable=true
+    '
+      require 'rack'
+
+      app = proc do |env|
+        ['200', {'Content-Type' => 'text/html'}, ['A barebones rack app.']]
+      end
+
+      Rack::Handler::WEBrick.run app
+
+section.center
+  p Rack provides a minimal interface between web servers supporting Ruby and Ruby frameworks.
+
+section
+  h2 Application
+  p A Rack application is a Ruby object (not a class) that responds to #call.
+
+section
+  h2 Application
+  p It takes exactly one argument, the environment and returns an Array of exactly three values: The status, the headers, and the body.
+
+section
+  h2 Environment
+  p The environment must be an instance of Hash that includes CGI-like headers.
+
+section
+  h2 Environment
+  p The application is free to modify the environment.
+
+section
+  h2 Environment
+  p The environment is required to have a couple required keys (adopted from PEP333).
+
+section.center
+  p <a href="http://www.rubydoc.info/github/rack/rack/master/file/SPEC">RTFM</a>
+
+section.center data-background="#F00"
+  p The foundation of an HTTP middleware in the Ruby 🌍
+
+section.center
+  pre: code.ruby contenteditable=true
+    '
+      class Middleware
+        def initialize(app)
+          @app = app
+        end
+
+        def call(env)
+          # Pass control to the previous application if you need to.
+          @app.call(env)
+        end
+      end
+
+section.center
+  pre: code.ruby contenteditable=true
+    '
+      class Middleware
+        def initialize(app)
+          @app = app
+        end
+
+        def call(env)
+          # Or stop the request here and return.
+          ['200', {'Content-Type' => 'text/html'}, ['A barebones rack app.']]
+        end
+      end
+
+section.center data-background="#000"
+  p The foundation of an HTTP middleware in the Ruby 🌍
+
+section.center data-background="#000"
+  pre.white contenteditable=true
+    '
+      Rack::MethodOverride
+      Rack::Cors
+      Rack::Sendfile
+      ActionDispatch::Static
+      ActionDispatch::Executor
+      ActiveSupport::Cache::Strategy::LocalCache::Middleware
+      Rack::Runtime
+      ActionDispatch::RequestId
+      ActionDispatch::RemoteIp
+      Rails::Rack::Logger
+      ActionDispatch::ShowExceptions
+      ActionDispatch::DebugExceptions
+      ActionDispatch::Reloader
+      ActionDispatch::Callbacks
+      ActiveRecord::Migration::CheckPending
+      Rack::Head
+      Rack::ConditionalGet
+      Rack::ETag
+      Rack::Deflater
+      Some::Application.routes
+
+section.center
+  pre: code.ruby contenteditable=true
+    '
+      ProxyMiddleware = Struct.new(:app) do
+        def call(env)
+          if should_proxy_request?(env)
+            proxy_request_to_another_service(env)
+          else
+            app.call(env)
+          end
+        end
+
+        # ...
+      end
+
+section data-background="https://m.popkey.co/115c5a/Q89NN.gif"
+
+section.center data-background="#000"
+  p kinda/sorta
+
+section
+  h2 Proxying
+  ul
+    li Decide which requests to proxy
+    li Rewrite request paths
+    li Handle timeouts
+    li Pre-process requests
+    li Proxy the request
+
+section.center
+  p Decide which requests to proxy
+section.center
+  p Rewrite request paths
+section.center
+  p Handle timeouts
+
+section.center data-background="#000"
+  p Configuration
+
+section.center
+  pre: code.ruby contenteditable=true
+    '
+      Macro::ApiGateway = Rack::Delegate.configure do
+        # Strips the leading /api out of the outgoing requests.
+        rewrite { path.gsub!(%r{\A/api}, '') }
+
+        # Don't proxy requests without them matching on the condition in the block.
+        constraints { |request| Version.new('v1').matches?(request) }
+
+        # With the rewrite on, requests you /api/users will go to
+        # http://users-service.intern/users.
+        from %r{\A/api/users},    to: 'http://users-service.intern'
+
+        # Requests go to http://payments-service.intern/payments.
+        from %r{\A/api/payments}, to: 'http://payments-service.intern'
+      end
+
+section.center
+  pre: code.ruby contenteditable=true
+    '
+      module Macro
+        class Appplication
+          middleware.use ApiGateway
+        end
+      end
+
+section.center
+  p Pre-process requests
+section.center
+  p Proxy the request
+
+section data-background="#000" data-transition="fade-in fade-out"
+section data-background="https://media.giphy.com/media/A06UFEx8jxEwU/giphy.gif"

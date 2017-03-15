@@ -1,0 +1,4 @@
+_site
+.tmp
+.tags
+.DS_Store

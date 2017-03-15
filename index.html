@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Scheduled Tasks</title>
+
+    <link href="css/reveal.css" rel="stylesheet" />
+    <link href="css/simple.css" rel="stylesheet" />
+    <link href="css/googlecode.css" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section class="center"><h1>👋</h1></section><section class="center"><img class="inline" src="images/me-pixel.png" /></section><section class="center"><p><a href="http://gsamokovarov.com">@gsamokovarov</a></p></section><section class="center" data-background="#000"><h2 class="white">Evening!</h2></section><section class="center"><img class="inline" src="images/banitsa.png" /></section><section class="center"><img class="inline" src="images/ruby.png" /></section><section data-background="https://media.giphy.com/media/AHj0lQstZ9I9W/giphy.gif"><img class="inline fragment" src="images/rubybanitsa.png" /></section><section class="center"><p><a href="http://rubybanitsa.com">rubybanitsa.com</a></p></section><section class="center"><p><a href="http://twitter.com/rubybanitsa">@rubybanitsa</a></p></section><section class="center" data-background="#F00"><p>Will repeat at least until we run out of banitsa.</p></section><section class="center" data-background="#F00"><p>May change them dates and times.</p></section><section class="center" data-background="#F00"><p>May change locations.</p></section><section class="center" data-background="#F00"><p>May have presentations.</p></section><section class="center" data-background="#000"><h2>Reverse Proxy</h2><p class="fragment">rack + net/http = ❤️</p></section><section class="center"><p>In a micro-service, API-oriented world, you need an API gateway.</p></section><section class="center"><p>Or so I'm told<span class="fragment">, I dunno, really.</span></p></section><section><h2>Constraints</h2><ul><li class="fragment">Locked infrastructure</li><li class="fragment">Time to market</li></ul></section><section class="center"><img class="inline" src="images/infra.png" /></section><section class="center"><p>Infrastructure</p></section><section class="center"><p><strike>Infrastructure</strike></p></section><section class="center"><p>Application</p></section><section class="center" data-background="#000"><p>Or nginx sucks, right?</p></section><section data-background="http://i2.kym-cdn.com/photos/images/newsfeed/000/976/824/913.gif"></section><section><h2>Application</h2><ul><li class="fragment">Ruby ❤️</li><li class="fragment">Easy to prototype</li><li class="fragment">Easy to change</li><li class="fragment">Easy to deploy</li></ul></section><section class="center"><p><a href="https://github.com/gsamokovarov/rack-delegate">rack-delegate</a></p></section><section data-background="https://media.giphy.com/media/VTjMuV5o8r4eA/giphy.gif"></section><section data-background="https://media.giphy.com/media/VTjMuV5o8r4eA/giphy.gif"><p class="white shadow">BUT IT DOESN'T SCALE, BRAH!</p></section><section data-background="https://media.giphy.com/media/VTjMuV5o8r4eA/giphy.gif"><p class="white shadow">IT'S SLOWOLOLOLO!</p></section><section data-background="https://media.giphy.com/media/T0OUBIXo7nZiU/giphy.gif"><p class="white shadow fragment">SO WHAT?</p></section><section data-background="https://media.giphy.com/media/T0OUBIXo7nZiU/giphy.gif"><p class="white shadow">SO FUCKING WHAT?</p></section><section data-background="https://media.giphy.com/media/motsIgod3nQ9G/giphy.gif"><p class="white shadow fragment">HAS BEEN IN PRODUCTION FOR YEARS!</p></section><section class="center" data-background="https://media.giphy.com/media/G5Sqi8Fm6pXoI/giphy.gif"><p class="white shadow fragment">IT'S FINE!</p></section><section><img class="inline fragment" src="images/infra.png" /></section><section class="center" data-background="#000"><h2 class="white">Rack</h2></section><section class="center"><pre><code class="ruby" contenteditable="">require 'rack'
+
+app = proc do |env|
+  ['200', {'Content-Type' => 'text/html'}, ['A barebones rack app.']]
+end
+
+Rack::Handler::WEBrick.run app </code></pre></section><section class="center"><p>Rack provides a minimal interface between web servers supporting Ruby and Ruby frameworks.</p></section><section><h2>Application</h2><p>A Rack application is a Ruby object (not a class) that responds to #call.</p></section><section><h2>Application</h2><p>It takes exactly one argument, the environment and returns an Array of exactly three values: The status, the headers, and the body.</p></section><section><h2>Environment</h2><p>The environment must be an instance of Hash that includes CGI-like headers.</p></section><section><h2>Environment</h2><p>The application is free to modify the environment.</p></section><section><h2>Environment</h2><p>The environment is required to have a couple required keys (adopted from PEP333).</p></section><section class="center"><p><a href="http://www.rubydoc.info/github/rack/rack/master/file/SPEC">RTFM</a></p></section><section class="center" data-background="#F00"><p>The foundation of an HTTP middleware in the Ruby 🌍</p></section><section class="center"><pre><code class="ruby" contenteditable="">class Middleware
+  def initialize(app)
+    @app = app
+  end
+
+  def call(env)
+    # Pass control to the previous application if you need to.
+    @app.call(env)
+  end
+end </code></pre></section><section class="center"><pre><code class="ruby" contenteditable="">class Middleware
+  def initialize(app)
+    @app = app
+  end
+
+  def call(env)
+    # Or stop the request here and return.
+    ['200', {'Content-Type' => 'text/html'}, ['A barebones rack app.']]
+  end
+end </code></pre></section><section class="center" data-background="#000"><p>The foundation of an HTTP middleware in the Ruby 🌍</p></section><section class="center" data-background="#000"><pre class="white" contenteditable="">Rack::MethodOverride
+Rack::Cors
+Rack::Sendfile
+ActionDispatch::Static
+ActionDispatch::Executor
+ActiveSupport::Cache::Strategy::LocalCache::Middleware
+Rack::Runtime
+ActionDispatch::RequestId
+ActionDispatch::RemoteIp
+Rails::Rack::Logger
+ActionDispatch::ShowExceptions
+ActionDispatch::DebugExceptions
+ActionDispatch::Reloader
+ActionDispatch::Callbacks
+ActiveRecord::Migration::CheckPending
+Rack::Head
+Rack::ConditionalGet
+Rack::ETag
+Rack::Deflater
+Some::Application.routes </pre></section><section class="center"><pre><code class="ruby" contenteditable="">ProxyMiddleware = Struct.new(:app) do
+  def call(env)
+    if should_proxy_request?(env)
+      proxy_request_to_another_service(env)
+    else
+      app.call(env)
+    end
+  end
+
+  # ...
+end </code></pre></section><section data-background="https://m.popkey.co/115c5a/Q89NN.gif"></section><section class="center" data-background="#000"><p>kinda/sorta</p></section><section><h2>Proxying</h2><ul><li>Decide which requests to proxy</li><li>Rewrite request paths</li><li>Handle timeouts</li><li>Pre-process requests</li><li>Proxy the request</li></ul></section><section class="center"><p>Decide which requests to proxy</p></section><section class="center"><p>Rewrite request paths</p></section><section class="center"><p>Handle timeouts</p></section><section class="center" data-background="#000"><p>Configuration</p></section><section class="center"><pre><code class="ruby" contenteditable="">Macro::ApiGateway = Rack::Delegate.configure do
+  # Strips the leading /api out of the outgoing requests.
+  rewrite { path.gsub!(%r{\A/api}, '') }
+
+  # Don't proxy requests without them matching on the condition in the block.
+  constraints { |request| Version.new('v1').matches?(request) }
+
+  # With the rewrite on, requests you /api/users will go to
+  # http://users-service.intern/users.
+  from %r{\A/api/users},    to: 'http://users-service.intern'
+
+  # Requests go to http://payments-service.intern/payments.
+  from %r{\A/api/payments}, to: 'http://payments-service.intern'
+end </code></pre></section><section class="center"><pre><code class="ruby" contenteditable="">module Macro
+  class Appplication
+    middleware.use ApiGateway
+  end
+end </code></pre></section><section class="center"><p>Pre-process requests</p></section><section class="center"><p>Proxy the request</p></section><section data-background="#000" data-transition="fade-in fade-out"></section><section data-background="https://media.giphy.com/media/A06UFEx8jxEwU/giphy.gif"></section>
+      </div>
+    </div>
+
+    <script src="js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+
+    <script type="text/javascript">
+      Reveal.initialize({
+        width:  '100%',
+        height: '100%',
+        margin: 0.05,
+        controls: false,
+        progress: false,
+        history: true,
+        center: false,
+        rollingLinks: true,
+        transition: 'none',
+        backgroundTransition: 'none',
+        dependencies: [
+          {
+            src: 'js/highlight.min.js',
+            async: true,
+            callback: function() {
+              hljs.configure({ languages: ['ruby'] });
+              hljs.initHighlightingOnLoad();
+            }
+          }
+        ]
+      });
+    </script>
+    <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+  </body>
+</html>
