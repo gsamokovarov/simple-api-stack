@@ -5,7 +5,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Scheduled Tasks</title>
+    <title>Simple API Stack</title>
 
     <link href="css/reveal.css" rel="stylesheet" />
     <link href="css/simple.css" rel="stylesheet" />
@@ -14,77 +14,120 @@
   <body>
     <div class="reveal">
       <div class="slides">
-        <section class="center"><h1>👋</h1></section><section class="center"><img class="inline" src="images/me-pixel.png" /></section><section class="center"><p><a href="http://gsamokovarov.com">@gsamokovarov</a></p></section><section class="center" data-background="#000"><h2 class="white">Evening!</h2></section><section class="center"><img class="inline" src="images/banitsa.png" /></section><section class="center"><img class="inline" src="images/ruby.png" /></section><section data-background="https://media.giphy.com/media/AHj0lQstZ9I9W/giphy.gif"><img class="inline fragment" src="images/rubybanitsa.png" /></section><section class="center"><p><a href="http://rubybanitsa.com">rubybanitsa.com</a></p></section><section class="center"><p><a href="http://twitter.com/rubybanitsa">@rubybanitsa</a></p></section><section class="center" data-background="#F00"><p>Will repeat at least until we run out of banitsa.</p></section><section class="center" data-background="#F00"><p>May change them dates and times.</p></section><section class="center" data-background="#F00"><p>May change locations.</p></section><section class="center" data-background="#F00"><p>May have presentations.</p></section><section class="center" data-background="#000"><h2>Reverse Proxy</h2><p class="fragment">rack + net/http = ❤️</p></section><section class="center"><p>In a micro-service, API-oriented world, you need an API gateway.</p></section><section class="center"><p>Or so I'm told<span class="fragment">, I dunno, really.</span></p></section><section><h2>Constraints</h2><ul><li class="fragment">Locked infrastructure</li><li class="fragment">Time to market</li></ul></section><section class="center"><img class="inline" src="images/infra.png" /></section><section class="center"><p>Infrastructure</p></section><section class="center"><p><strike>Infrastructure</strike></p></section><section class="center"><p>Application</p></section><section class="center" data-background="#000"><p>Or nginx sucks, right?</p></section><section data-background="http://i2.kym-cdn.com/photos/images/newsfeed/000/976/824/913.gif"></section><section><h2>Application</h2><ul><li class="fragment">Ruby ❤️</li><li class="fragment">Easy to prototype</li><li class="fragment">Easy to change</li><li class="fragment">Easy to deploy</li></ul></section><section class="center"><p><a href="https://github.com/gsamokovarov/rack-delegate">rack-delegate</a></p></section><section data-background="https://media.giphy.com/media/VTjMuV5o8r4eA/giphy.gif"></section><section data-background="https://media.giphy.com/media/VTjMuV5o8r4eA/giphy.gif"><p class="white shadow">BUT IT DOESN'T SCALE, BRAH!</p></section><section data-background="https://media.giphy.com/media/VTjMuV5o8r4eA/giphy.gif"><p class="white shadow">IT'S SLOWOLOLOLO!</p></section><section data-background="https://media.giphy.com/media/T0OUBIXo7nZiU/giphy.gif"><p class="white shadow fragment">SO WHAT?</p></section><section data-background="https://media.giphy.com/media/T0OUBIXo7nZiU/giphy.gif"><p class="white shadow">SO FUCKING WHAT?</p></section><section data-background="https://media.giphy.com/media/motsIgod3nQ9G/giphy.gif"><p class="white shadow fragment">HAS BEEN IN PRODUCTION FOR YEARS!</p></section><section class="center" data-background="https://media.giphy.com/media/G5Sqi8Fm6pXoI/giphy.gif"><p class="white shadow fragment">IT'S FINE!</p></section><section><img class="inline fragment" src="images/infra.png" /></section><section class="center" data-background="#000"><h2 class="white">Rack</h2></section><section class="center"><pre><code class="ruby" contenteditable="">require 'rack'
+        <section class="center"><h1>👋</h1></section><section class="center"><img class="inline" src="images/me-pixel.png" /></section><section class="center"><p><a href="http://gsamokovarov.com">@gsamokovarov</a></p></section><section class="center"><h2>Evening!</h2></section><section class="center"><p>WELCOME TO RUBY</p><img class="inline" src="images/shit-logo.png" /></section><section class="center" data-background="#000"><p>Let me address this first.</p></section><section class="center" data-background="#000"><p>Many of you have said things about our logo.</p></section><section class="center" data-background="#000"><p>And I don't mean nice things. 🙊</p></section><section class="center"><p>Okay, so it does look a bit like shit. <span class="fragment">💩</span></p></section><section class="center"><p>A bit. Okay?</p><img class="inline" src="images/shit.png" /></section><section class="center"><p>A lot. Okay!</p><img class="inline" src="images/shit-pixels.png" /></section><section class="center" data-background="#000"><h1>🤔</h1></section><section class="center" data-background="#000"><p>But what is the Banitsa anyway?</p></section><section class="center" data-background="#000"><p>Isn't it what it eventually turns into?</p></section><section class="center" data-background="#000"><h1>🤔</h1></section><section class="center"><img class="inline" src="images/shit-pixels.png" /></section><section class="center" data-background="#F00"><p>So, we have a new logo now.</p></section><section class="center" data-background="#F00"><p>I guess...</p></section><section class="center"><img class="inline" src="images/new-logo.png" /></section><section class="center" data-background="#F00"><p>YOU ARE WELCOME!</p></section><section class="center" data-background="#F00"></section><section class="center" data-background="#00F"><p>Anyway...</p></section><section class="center" data-background="#000"><img class="inline" src="images/partial.svg" /><p>September 22-23</p></section><section><h2>partial :: Conf</h2><ul><li>Functional conference in Sofia, Bulgaria</li><li>Long lectures with a half-day of trainings</li><li>A broader scope than a single technology</li><li>Interesting and fun<span class="fragment">, we hope</span></li></ul></section><section class="center"><a href="http://partialconf.com">partial :: Conf</a></section><section class="center"><a href="https://twitter.com/partialconf">@partialconf</a></section><section class="center"><p>Open <a href="http://partialconf.com#apply">Call for Speakers</a>! 📈</p></section><section class="center" data-background="#00F"><p>You can help us by spreading the word!</p></section><section class="center" data-background="#00F"><p>Follow us on twitter.</p></section><section class="center" data-background="#00F"><p>Make your friends go.</p></section><section class="center" data-background="#00F"><p>Make your non-friends go.</p></section><section class="center" data-background="#00F"><p>Make some noise online.</p></section><section class="center" data-background="#00F"><p>Make some noise inline.</p></section><section class="center" data-background="#F00"><p>That (inline) doesn't make no sense!</p></section><section class="center" data-background="#F00"><p>What does make sense is the noise though.</p></section><section class="center" data-background="#F00"><p>Every single bit of it will help.</p></section><section class="center" data-background="#F00"><h1>🙇</h1></section><section class="center" data-background="#F00"></section><section class="center" data-background="#000"></section><section class="center" data-background="#000"><h2>Simple API Stack</h2></section><section><h2>Rails API Mode</h2><p>Since 5.0 we have an API friendly mode.</p></section><section><h2>Rails API Mode</h2><p>This doesn't mean that Rails pre 5.0 sucks for APIs.</p></section><section><h2>Rails API Mode</h2><p>It does not.</p></section><section><h2>Rails API Mode</h2><p>It's fine.</p></section><section><h2>Rails API Mode</h2><p>The API mode does a few things.</p></section><section><h2>Rails API Mode</h2><p>Cuts the internal middleware stack.</p></section><section><h2>Rails API Mode</h2><p>Introduces a bit slimmer ActionController::Base.</p></section><section><h2>Rails API Mode</h2><p>Introduces ActionController::API.</p></section><section><h2>Rails API Mode</h2><p>Introduces API friendly development errors.</p></section><section class="center"><a href="http://edgeguides.rubyonrails.org/api_app.html">MORE</a></section><section class="center" data-background="#000"><p>All of this can be backported pre Rails 5.0</p></section><section class="center" data-background="#000"><p>5.0 acknowledges a default API stack.</p></section><section class="center" data-background="#000"><h1>🎪</h1></section><section class="center"><h1>🤔</h1></section><section class="center"><p>What makes a good API?</p></section><section class="center"><p>What makes a good RESTful API?</p></section><section class="center" data-background="#F00"><p>Good resources.</p></section><section class="center" data-background="#F00"><p>Semantic responses.</p></section><section class="center" data-background="#F00"><p>Consistent responses.</p></section><section class="center" data-background="#F00"><p>Consistent error responses.</p></section><section class="center" data-background="#000"><h2>Responses (JSON)</h2></section><section><h2>Responses</h2><p>We have a couple of options.</p></section><section><h2>JBuilder</h2><p>Renders Action View templates (views) as JSON instead of HTML.</p></section><section class="center"><pre><code class="ruby" contenteditable=""># app/views/messages/show.json.jbuilder
+json.content format_content(@message.content)
+json.(@message, :created_at, :updated_at)
 
-app = proc do |env|
-  ['200', {'Content-Type' => 'text/html'}, ['A barebones rack app.']]
+json.author do
+  json.name @message.creator.name.familiar
+  json.email_address @message.creator.email_address_with_name
+  json.url url_for(@message.creator, format: :json)
 end
 
-Rack::Handler::WEBrick.run app </code></pre></section><section class="center"><p>Rack provides a minimal interface between web servers supporting Ruby and Ruby frameworks.</p></section><section><h2>Application</h2><p>A Rack application is a Ruby object (not a class) that responds to #call.</p></section><section><h2>Application</h2><p>It takes exactly one argument, the environment and returns an Array of exactly three values: The status, the headers, and the body.</p></section><section><h2>Environment</h2><p>The environment must be an instance of Hash that includes CGI-like headers.</p></section><section><h2>Environment</h2><p>The application is free to modify the environment.</p></section><section><h2>Environment</h2><p>The environment is required to have a couple required keys (adopted from PEP333).</p></section><section class="center"><p><a href="http://www.rubydoc.info/github/rack/rack/master/file/SPEC">RTFM</a></p></section><section class="center" data-background="#F00"><p>The foundation of an HTTP middleware in the Ruby 🌍</p></section><section class="center"><pre><code class="ruby" contenteditable="">class Middleware
-  def initialize(app)
-    @app = app
-  end
+if current_user.admin?
+  json.visitors calculate_visitors(@message)
+end
 
-  def call(env)
-    # Pass control to the previous application if you need to.
-    @app.call(env)
-  end
-end </code></pre></section><section class="center"><pre><code class="ruby" contenteditable="">class Middleware
-  def initialize(app)
-    @app = app
-  end
+json.comments @message.comments, :content, :created_at
 
-  def call(env)
-    # Or stop the request here and return.
-    ['200', {'Content-Type' => 'text/html'}, ['A barebones rack app.']]
+json.attachments @message.attachments do |attachment|
+  json.filename attachment.filename
+  json.url url_for(attachment)
+end </code></pre></section><section class="center"><pre><code class="json" contenteditable="">{
+  "content": "&lt;p&gt;This is &lt;i&gt;serious&lt;/i&gt; monkey business&lt;/p&gt;",
+  "created_at": "2011-10-29T20:45:28-05:00",
+  "updated_at": "2011-10-29T20:45:28-05:00",
+
+  "author": {
+    "name": "David H.",
+    "email_address": "'David Heinemeier Hansson' <david@heinemeierhansson.com>",
+    "url": "http://example.com/users/1-david.json"
+  },
+
+  "visitors": 15,
+
+  "comments": [
+    { "content": "Hello everyone!", "created_at": "2011-10-29T20:45:28-05:00" },
+    { "content": "To you my good sir!", "created_at": "2011-10-29T20:47:28-05:00" }
+  ],
+
+  "attachments": [
+    { "filename": "forecast.xls", "url": "http://example.com/downloads/forecast.xls" },
+    { "filename": "presentation.pdf", "url": "http://example.com/downloads/presentation.pdf" }
+  ]
+} </code></pre></section><section><h2>JBuilder</h2><p>This is the default API mode option.</p></section><section class="center" data-background="#000"><p>Too much DSL for my taste.</p></section><section class="center" data-background="#000"><p>Even if you like the DSL, the logic feel like it's in one big bag.</p></section><section class="center" data-background="#000"><p>Can be abstracted with partial views, but I like methods.</p></section><section><h2>Active Model Serializers</h2><p>Renders a canonical representation of an object as JSON.</p></section><section><h2>Active Model Serializers</h2><p>No templates, simple Ruby classes are used instead.</p></section><section class="center"><pre><code class="ruby" contenteditable="">class SomeSerializer < ActiveModel::Serializer
+  attribute :title, key: :name
+  attributes :body
+
+  def body
+    object.strip
   end
-end </code></pre></section><section class="center" data-background="#000"><p>The foundation of an HTTP middleware in the Ruby 🌍</p></section><section class="center" data-background="#000"><pre class="white" contenteditable="">Rack::MethodOverride
-Rack::Cors
-Rack::Sendfile
-ActionDispatch::Static
-ActionDispatch::Executor
-ActiveSupport::Cache::Strategy::LocalCache::Middleware
-Rack::Runtime
-ActionDispatch::RequestId
-ActionDispatch::RemoteIp
-Rails::Rack::Logger
-ActionDispatch::ShowExceptions
-ActionDispatch::DebugExceptions
-ActionDispatch::Reloader
-ActionDispatch::Callbacks
-ActiveRecord::Migration::CheckPending
-Rack::Head
-Rack::ConditionalGet
-Rack::ETag
-Rack::Deflater
-Some::Application.routes </pre></section><section class="center"><pre><code class="ruby" contenteditable="">ProxyMiddleware = Struct.new(:app) do
-  def call(env)
-    if should_proxy_request?(env)
-      proxy_request_to_another_service(env)
-    else
-      app.call(env)
+end </code></pre></section><section class="center"><pre><code class="json" contenteditable="">{
+  "name": "Some",
+  "body": "I smell something 🤔."
+} </code></pre></section><section class="center" data-background="#0F0"><p>I like the concept of the serializers.</p></section><section class="center" data-background="#0F0"><p>Separates the view logic.</p></section><section class="center" data-background="#0F0"><p>Testable without specialized tools.</p></section><section class="center" data-background="#0F0"><p>Simple</p></section><section class="center" data-background="#000"><h2>Simple API Stack</h2></section><section class="center" data-background="#F00"><p>It's kinda huge.</p></section><section class="center" data-background="#F00"><p>Bring runtime dependencies.</p></section><section class="center" data-background="#F00"><p>Supports jsonapi!</p></section><section class="center" data-background="#0F0"><p>But what if you don't need jsonapi?</p></section><section class="center" data-background="#F00"></section><section class="center" data-background="#F00"><p>Requires an interface for the serializable objects.</p></section><section class="center"><pre><code class="ruby" contenteditable="">class SomeResource < ActiveRecord::Base
+  # columns: title, body
+end </code></pre></section><section class="center"><pre><code class="ruby" contenteditable="">class SomeResource < ActiveModelSerializers::Model
+  attributes :title, :body
+end </code></pre></section><section class="center"><h1>😓</h1></section><section class="center" data-background="#000"><h2>serializr</h2></section><section class="center"><h2><a href="https://github.com/gsamokovarov/serializr">serializr</a></h2></section><section><h2>Serializr</h2><p>A lightweight alternative to AMS.</p></section><section><h2>Serializr</h2><p>No interface restrictions for the serializable objects.</p></section><section><h2>Serializr</h2><p>A minimal interface on the library side.</p></section><section class="center"><pre><code class="ruby" contenteditable=""># app/serializers/user_serializer.rb
+class UserSerializer < Serializr
+  attributes :id, :name, :email
+
+  def name
+    object.first_name + " " + object.last_name
+  end
+end </code></pre></section><section class="center"><pre><code class="json" contenteditable="">{
+  "id": 42,
+  "name": "Doe John",
+  "email": "john@nsa.gov"
+} </code></pre></section><section><h2>Serializr</h2><p>Integration with ActionController</p></section><section class="center"><pre><code class="ruby" contenteditable="">class UsersController < ApplicationController
+  def show
+    user = User.find(params[:id])
+
+    render json: user
+  end
+end </code></pre></section><section class="center"><pre><code class="ruby" contenteditable="">class UsersController < ApplicationController
+  def show
+    user = User.find(params[:id])
+
+    render json: user, serializer: UserSerializer
+  end
+end </code></pre></section><section class="center"><pre><code class="ruby" contenteditable="">class FriendsController < ApplicationController
+  def index
+    friends = User.friends_of(params[:id])
+
+    render json: friends
+  end
+end </code></pre></section><section class="center"><pre><code class="ruby" contenteditable="">class FriendsController < ApplicationController
+  def index
+    friends = User.friends_of(params[:id])
+
+    render json: friends, serializer: UserSerializer[]
+  end
+end </code></pre></section><section><h2>Serializr</h2><p>A minimal interface on the library side.</p></section><section><h2>Serializr</h2><p>This means no has_one, has_many, etc. class macros.</p></section><section><h2>Serializr</h2><p>Quite easy to support.</p></section><section class="center"><pre><code class="ruby" contenteditable=""># app/serializers/application_serializer.rb
+class ApplicationSerializer < Serializr
+  inlcude Rails.application.routes.url_helpers
+
+  cattr_reader :serializer_class_cache do
+    Hash.new do |hash, cls|
+      hash[cls] = (cls.name + Serializer).constantize
     end
   end
 
-  # ...
-end </code></pre></section><section data-background="https://m.popkey.co/115c5a/Q89NN.gif"></section><section class="center" data-background="#000"><p>kinda/sorta</p></section><section><h2>Proxying</h2><ul><li>Decide which requests to proxy</li><li>Rewrite request paths</li><li>Handle timeouts</li><li>Pre-process requests</li><li>Proxy the request</li></ul></section><section class="center"><p>Decide which requests to proxy</p></section><section class="center"><p>Rewrite request paths</p></section><section class="center"><p>Handle timeouts</p></section><section class="center" data-background="#000"><p>Configuration</p></section><section class="center"><pre><code class="ruby" contenteditable="">Macro::ApiGateway = Rack::Delegate.configure do
-  # Strips the leading /api out of the outgoing requests.
-  rewrite { path.gsub!(%r{\A/api}, '') }
+  def render_one(object, serializer: nil)
+    return unless object
 
-  # Don't proxy requests without them matching on the condition in the block.
-  constraints { |request| Version.new('v1').matches?(request) }
-
-  # With the rewrite on, requests you /api/users will go to
-  # http://users-service.intern/users.
-  from %r{\A/api/users},    to: 'http://users-service.intern'
-
-  # Requests go to http://payments-service.intern/payments.
-  from %r{\A/api/payments}, to: 'http://payments-service.intern'
-end </code></pre></section><section class="center"><pre><code class="ruby" contenteditable="">module Macro
-  class Appplication
-    middleware.use ApiGateway
+    serializer ||= serializer_class_cache[object.class]
+    serializer.new(object)
   end
-end </code></pre></section><section class="center"><p>Pre-process requests</p></section><section class="center"><p>Proxy the request</p></section><section data-background="#000" data-transition="fade-in fade-out"></section><section data-background="https://media.giphy.com/media/A06UFEx8jxEwU/giphy.gif"></section>
+
+  def render_many(objects, serializer: nil)
+    return [] if objects.blank?
+
+    serializer ||= serializer_class_cache[objects.first.class][]
+    serializer.new(objects)
+  end
+end </code></pre></section><section class="center"><h1>👆</h1></section><section class="center"><h1>✌️</h1></section><section class="center" data-background="#000"><h2>Error Responses (JSON)</h2></section><section class="center"><p>Choose a format and stick with it!</p></section><section data-background="#000"><h2>Ideas</h2><ul><li class="fragment">No string messages</li><li class="fragment">Field errors with error details</li><li class="fragment">CONSISTENCY</li></ul></section><section class="center" data-background="#000"><p>Being an API, you have one great constraint.</p></section><section class="center" data-background="#F00"><p>You're not the one to worry about presenting the errors.</p></section><section class="center" data-background="#F00"><p>Only providing them.</p></section><section class="center" data-background="#000"><p>Which means, we can treat all the errors the same.</p></section><section class="center"><h1>👆</h1></section><section class="center"><p>Let your application crash.</p></section><section class="center"><h1>✌️</h1></section><section class="center"><p>Catch it and render the response.</p></section><section class="center"><h1>🍻</h1></section><section class="center"><p>Enjoy your substance of choice<span class="fragment">, moderately!</span></p></section><section class="center"><pre><code class="ruby" contenteditable="">ActionController::API.rescue_from </code></pre></section><section class="center"><pre><code class="ruby" contenteditable="">ActionController::Base.rescue_from </code></pre></section><section class="center"><h1>👓</h1></section><section class="center"></section><section class="center"><h1>🕶</h1></section>
       </div>
     </div>
 

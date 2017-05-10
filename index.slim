@@ -1,6 +1,6 @@
 ---
 layout: slide
-title: Reverse Rack Proxy
+title: Simple API Stack
 ---
 
 section.center
@@ -12,268 +12,530 @@ section.center
 section.center
   p: a(href="http://gsamokovarov.com") @gsamokovarov
 
-section.center data-background="#000"
-  h2.white Evening!
+section.center
+  h2 Evening!
 
 section.center
-  img.inline src="images/banitsa.png"
-
-section.center
-  img.inline src="images/ruby.png"
-
-section data-background="https://media.giphy.com/media/AHj0lQstZ9I9W/giphy.gif"
-  img.inline.fragment src="images/rubybanitsa.png"
-
-section.center
-  p: a(href="http://rubybanitsa.com") rubybanitsa.com
-
-section.center
-  p: a(href="http://twitter.com/rubybanitsa") @rubybanitsa
-
-section.center data-background="#F00"
-  p Will repeat at least until we run out of banitsa.
-
-section.center data-background="#F00"
-  p May change them dates and times.
-
-section.center data-background="#F00"
-  p May change locations.
-
-section.center data-background="#F00"
-  p May have presentations.
+  p WELCOME TO RUBY
+  img.inline src="images/shit-logo.png"
 
 section.center data-background="#000"
-  h2 Reverse Proxy
-  p.fragment rack + net/http = ❤️
+  p Let me address this first.
+
+section.center data-background="#000"
+  p Many of you have said things about our logo.
+
+section.center data-background="#000"
+  p And I don't mean nice things. 🙊
 
 section.center
-  p In a micro-service, API-oriented world, you need an API gateway.
+  p Okay, so it does look a bit like shit. <span class="fragment">💩</span>
 
 section.center
-  p Or so I'm told<span class="fragment">, I dunno, really.</span>
+  p A bit. Okay?
+  img.inline src="images/shit.png"
+
+section.center
+  p A lot. Okay!
+  img.inline src="images/shit-pixels.png"
+
+section.center data-background="#000"
+  h1 🤔
+
+section.center data-background="#000"
+  p But what is the Banitsa anyway?
+
+section.center data-background="#000"
+  p Isn't it what it eventually turns into?
+
+section.center data-background="#000"
+  h1 🤔
+
+section.center
+  img.inline src="images/shit-pixels.png"
+
+section.center data-background="#F00"
+  p So, we have a new logo now.
+
+section.center data-background="#F00"
+  p I guess...
+
+section.center
+  img.inline src="images/new-logo.png"
+
+section.center data-background="#F00"
+  p YOU ARE WELCOME!
+
+section.center data-background="#F00"
+section.center data-background="#00F"
+  p Anyway...
+
+section.center data-background="#000"
+  img.inline src="images/partial.svg"
+  p September 22-23
 
 section
-  h2 Constraints
+  h2 partial :: Conf
+
   ul
-    li.fragment Locked infrastructure
-    li.fragment Time to market
+    li Functional conference in Sofia, Bulgaria
+    li Long lectures with a half-day of trainings
+    li A broader scope than a single technology
+    li Interesting and fun<span class="fragment">, we hope</span>
 
 section.center
-  img.inline src="images/infra.png"
+  <a href="http://partialconf.com">partial :: Conf</a>
 
 section.center
-  p Infrastructure
-section.center
-  p <strike>Infrastructure</strike>
-section.center
-  p Application
-
-section.center data-background="#000"
-  p Or nginx sucks, right?
-
-section data-background="http://i2.kym-cdn.com/photos/images/newsfeed/000/976/824/913.gif"
-
-section
-  h2 Application
-  ul
-    li.fragment Ruby ❤️
-    li.fragment Easy to prototype
-    li.fragment Easy to change
-    li.fragment Easy to deploy
+  <a href="https://twitter.com/partialconf">@partialconf</a>
 
 section.center
-  p: a(href="https://github.com/gsamokovarov/rack-delegate") rack-delegate
+  p Open <a href="http://partialconf.com#apply">Call for Speakers</a>! 📈
 
-section data-background="https://media.giphy.com/media/VTjMuV5o8r4eA/giphy.gif"
-section data-background="https://media.giphy.com/media/VTjMuV5o8r4eA/giphy.gif"
-  p.white.shadow BUT IT DOESN'T SCALE, BRAH!
+section.center data-background="#00F"
+  p You can help us by spreading the word!
 
-section data-background="https://media.giphy.com/media/VTjMuV5o8r4eA/giphy.gif"
-  p.white.shadow IT'S SLOWOLOLOLO!
+section.center data-background="#00F"
+  p Follow us on twitter.
 
-section data-background="https://media.giphy.com/media/T0OUBIXo7nZiU/giphy.gif"
-  p.white.shadow.fragment SO WHAT?
+section.center data-background="#00F"
+  p Make your friends go.
 
-section data-background="https://media.giphy.com/media/T0OUBIXo7nZiU/giphy.gif"
-  p.white.shadow SO FUCKING WHAT?
+section.center data-background="#00F"
+  p Make your non-friends go.
 
-section data-background="https://media.giphy.com/media/motsIgod3nQ9G/giphy.gif"
-  p.white.shadow.fragment HAS BEEN IN PRODUCTION FOR YEARS!
+section.center data-background="#00F"
+  p Make some noise online.
 
-section.center data-background="https://media.giphy.com/media/G5Sqi8Fm6pXoI/giphy.gif"
-  p.white.shadow.fragment IT'S FINE!
-
-section
-  img.inline.fragment src="images/infra.png"
-
-section.center data-background="#000"
-  h2.white Rack
-
-section.center
-  pre: code.ruby contenteditable=true
-    '
-      require 'rack'
-
-      app = proc do |env|
-        ['200', {'Content-Type' => 'text/html'}, ['A barebones rack app.']]
-      end
-
-      Rack::Handler::WEBrick.run app
-
-section.center
-  p Rack provides a minimal interface between web servers supporting Ruby and Ruby frameworks.
-
-section
-  h2 Application
-  p A Rack application is a Ruby object (not a class) that responds to #call.
-
-section
-  h2 Application
-  p It takes exactly one argument, the environment and returns an Array of exactly three values: The status, the headers, and the body.
-
-section
-  h2 Environment
-  p The environment must be an instance of Hash that includes CGI-like headers.
-
-section
-  h2 Environment
-  p The application is free to modify the environment.
-
-section
-  h2 Environment
-  p The environment is required to have a couple required keys (adopted from PEP333).
-
-section.center
-  p <a href="http://www.rubydoc.info/github/rack/rack/master/file/SPEC">RTFM</a>
+section.center data-background="#00F"
+  p Make some noise inline.
 
 section.center data-background="#F00"
-  p The foundation of an HTTP middleware in the Ruby 🌍
+  p That (inline) doesn't make no sense!
+
+section.center data-background="#F00"
+  p What does make sense is the noise though.
+
+section.center data-background="#F00"
+  p Every single bit of it will help.
+
+section.center data-background="#F00"
+  h1 🙇
+
+section.center data-background="#F00"
+section.center data-background="#000"
+section.center data-background="#000"
+  h2 Simple API Stack
+
+section
+  h2 Rails API Mode
+  p Since 5.0 we have an API friendly mode.
+
+section
+  h2 Rails API Mode
+  p This doesn't mean that Rails pre 5.0 sucks for APIs.
+
+section
+  h2 Rails API Mode
+  p It does not.
+
+section
+  h2 Rails API Mode
+  p It's fine.
+
+section
+  h2 Rails API Mode
+  p The API mode does a few things.
+
+section
+  h2 Rails API Mode
+  p Cuts the internal middleware stack.
+
+section
+  h2 Rails API Mode
+  p Introduces a bit slimmer ActionController::Base.
+
+section
+  h2 Rails API Mode
+  p Introduces ActionController::API.
+
+section
+  h2 Rails API Mode
+  p Introduces API friendly development errors.
+
+section.center
+  <a href="http://edgeguides.rubyonrails.org/api_app.html">MORE</a>
+
+section.center data-background="#000"
+  p All of this can be backported pre Rails 5.0
+
+section.center data-background="#000"
+  p 5.0 acknowledges a default API stack.
+
+section.center data-background="#000"
+  h1 🎪
+
+section.center
+  h1 🤔
+
+section.center
+  p What makes a good API?
+
+section.center
+  p What makes a good RESTful API?
+
+section.center data-background="#F00"
+  p Good resources.
+
+section.center data-background="#F00"
+  p Semantic responses.
+
+section.center data-background="#F00"
+  p Consistent responses.
+
+section.center data-background="#F00"
+  p Consistent error responses.
+
+section.center data-background="#000"
+  h2 Responses (JSON)
+
+section
+  h2 Responses
+  p We have a couple of options.
+
+section
+  h2 JBuilder
+  p Renders Action View templates (views) as JSON instead of HTML.
 
 section.center
   pre: code.ruby contenteditable=true
     '
-      class Middleware
-        def initialize(app)
-          @app = app
-        end
+      # app/views/messages/show.json.jbuilder
+      json.content format_content(@message.content)
+      json.(@message, :created_at, :updated_at)
 
-        def call(env)
-          # Pass control to the previous application if you need to.
-          @app.call(env)
+      json.author do
+        json.name @message.creator.name.familiar
+        json.email_address @message.creator.email_address_with_name
+        json.url url_for(@message.creator, format: :json)
+      end
+
+      if current_user.admin?
+        json.visitors calculate_visitors(@message)
+      end
+
+      json.comments @message.comments, :content, :created_at
+
+      json.attachments @message.attachments do |attachment|
+        json.filename attachment.filename
+        json.url url_for(attachment)
+      end
+
+section.center
+  pre: code.json contenteditable=true
+    '
+      {
+        "content": "&lt;p&gt;This is &lt;i&gt;serious&lt;/i&gt; monkey business&lt;/p&gt;",
+        "created_at": "2011-10-29T20:45:28-05:00",
+        "updated_at": "2011-10-29T20:45:28-05:00",
+
+        "author": {
+          "name": "David H.",
+          "email_address": "'David Heinemeier Hansson' <david@heinemeierhansson.com>",
+          "url": "http://example.com/users/1-david.json"
+        },
+
+        "visitors": 15,
+
+        "comments": [
+          { "content": "Hello everyone!", "created_at": "2011-10-29T20:45:28-05:00" },
+          { "content": "To you my good sir!", "created_at": "2011-10-29T20:47:28-05:00" }
+        ],
+
+        "attachments": [
+          { "filename": "forecast.xls", "url": "http://example.com/downloads/forecast.xls" },
+          { "filename": "presentation.pdf", "url": "http://example.com/downloads/presentation.pdf" }
+        ]
+      }
+
+section
+  h2 JBuilder
+  p This is the default API mode option.
+
+section.center data-background="#000"
+  p Too much DSL for my taste.
+
+section.center data-background="#000"
+  p Even if you like the DSL, the logic feel like it's in one big bag.
+
+section.center data-background="#000"
+  p Can be abstracted with partial views, but I like methods.
+
+section
+  h2 Active Model Serializers
+  p Renders a canonical representation of an object as JSON.
+
+section
+  h2 Active Model Serializers
+  p No templates, simple Ruby classes are used instead.
+
+section.center
+  pre: code.ruby contenteditable=true
+    '
+      class SomeSerializer < ActiveModel::Serializer
+        attribute :title, key: :name
+        attributes :body
+
+        def body
+          object.strip
+        end
+      end
+
+section.center
+  pre: code.json contenteditable=true
+    '
+      {
+        "name": "Some",
+        "body": "I smell something 🤔."
+      }
+
+section.center data-background="#0F0"
+  p I like the concept of the serializers.
+
+section.center data-background="#0F0"
+  p Separates the view logic.
+
+section.center data-background="#0F0"
+  p Testable without specialized tools.
+
+section.center data-background="#0F0"
+  p Simple
+
+section.center data-background="#000"
+  h2 Simple API Stack
+
+section.center data-background="#F00"
+  p It's kinda huge.
+
+section.center data-background="#F00"
+  p Bring runtime dependencies.
+
+section.center data-background="#F00"
+  p Supports jsonapi!
+
+section.center data-background="#0F0"
+  p But what if you don't need jsonapi?
+
+section.center data-background="#F00"
+section.center data-background="#F00"
+  p Requires an interface for the serializable objects.
+
+section.center
+  pre: code.ruby contenteditable=true
+    '
+      class SomeResource < ActiveRecord::Base
+        # columns: title, body
+      end
+
+section.center
+  pre: code.ruby contenteditable=true
+    '
+      class SomeResource < ActiveModelSerializers::Model
+        attributes :title, :body
+      end
+
+section.center
+  h1 😓
+
+section.center data-background="#000"
+  h2 serializr
+
+section.center
+  h2 <a href="https://github.com/gsamokovarov/serializr">serializr</a>
+
+section
+  h2 Serializr
+  p A lightweight alternative to AMS.
+
+section
+  h2 Serializr
+  p No interface restrictions for the serializable objects.
+
+section
+  h2 Serializr
+  p A minimal interface on the library side.
+
+section.center
+  pre: code.ruby contenteditable=true
+    '
+      # app/serializers/user_serializer.rb
+      class UserSerializer < Serializr
+        attributes :id, :name, :email
+
+        def name
+          object.first_name + " " + object.last_name
+        end
+      end
+
+section.center
+  pre: code.json contenteditable=true
+    '
+      {
+        "id": 42,
+        "name": "Doe John",
+        "email": "john@nsa.gov"
+      }
+
+section
+  h2 Serializr
+  p Integration with ActionController
+
+section.center
+  pre: code.ruby contenteditable=true
+    '
+      class UsersController < ApplicationController
+        def show
+          user = User.find(params[:id])
+
+          render json: user
         end
       end
 
 section.center
   pre: code.ruby contenteditable=true
     '
-      class Middleware
-        def initialize(app)
-          @app = app
-        end
+      class UsersController < ApplicationController
+        def show
+          user = User.find(params[:id])
 
-        def call(env)
-          # Or stop the request here and return.
-          ['200', {'Content-Type' => 'text/html'}, ['A barebones rack app.']]
+          render json: user, serializer: UserSerializer
         end
       end
-
-section.center data-background="#000"
-  p The foundation of an HTTP middleware in the Ruby 🌍
-
-section.center data-background="#000"
-  pre.white contenteditable=true
-    '
-      Rack::MethodOverride
-      Rack::Cors
-      Rack::Sendfile
-      ActionDispatch::Static
-      ActionDispatch::Executor
-      ActiveSupport::Cache::Strategy::LocalCache::Middleware
-      Rack::Runtime
-      ActionDispatch::RequestId
-      ActionDispatch::RemoteIp
-      Rails::Rack::Logger
-      ActionDispatch::ShowExceptions
-      ActionDispatch::DebugExceptions
-      ActionDispatch::Reloader
-      ActionDispatch::Callbacks
-      ActiveRecord::Migration::CheckPending
-      Rack::Head
-      Rack::ConditionalGet
-      Rack::ETag
-      Rack::Deflater
-      Some::Application.routes
 
 section.center
   pre: code.ruby contenteditable=true
     '
-      ProxyMiddleware = Struct.new(:app) do
-        def call(env)
-          if should_proxy_request?(env)
-            proxy_request_to_another_service(env)
-          else
-            app.call(env)
+      class FriendsController < ApplicationController
+        def index
+          friends = User.friends_of(params[:id])
+
+          render json: friends
+        end
+      end
+
+section.center
+  pre: code.ruby contenteditable=true
+    '
+      class FriendsController < ApplicationController
+        def index
+          friends = User.friends_of(params[:id])
+
+          render json: friends, serializer: UserSerializer[]
+        end
+      end
+
+section
+  h2 Serializr
+  p A minimal interface on the library side.
+
+section
+  h2 Serializr
+  p This means no has_one, has_many, etc. class macros.
+
+section
+  h2 Serializr
+  p Quite easy to support.
+
+section.center
+  pre: code.ruby contenteditable=true
+    '
+      # app/serializers/application_serializer.rb
+      class ApplicationSerializer < Serializr
+        inlcude Rails.application.routes.url_helpers
+
+        cattr_reader :serializer_class_cache do
+          Hash.new do |hash, cls|
+            hash[cls] = (cls.name + Serializer).constantize
           end
         end
 
-        # ...
-      end
+        def render_one(object, serializer: nil)
+          return unless object
 
-section data-background="https://m.popkey.co/115c5a/Q89NN.gif"
+          serializer ||= serializer_class_cache[object.class]
+          serializer.new(object)
+        end
 
-section.center data-background="#000"
-  p kinda/sorta
+        def render_many(objects, serializer: nil)
+          return [] if objects.blank?
 
-section
-  h2 Proxying
-  ul
-    li Decide which requests to proxy
-    li Rewrite request paths
-    li Handle timeouts
-    li Pre-process requests
-    li Proxy the request
-
-section.center
-  p Decide which requests to proxy
-section.center
-  p Rewrite request paths
-section.center
-  p Handle timeouts
-
-section.center data-background="#000"
-  p Configuration
-
-section.center
-  pre: code.ruby contenteditable=true
-    '
-      Macro::ApiGateway = Rack::Delegate.configure do
-        # Strips the leading /api out of the outgoing requests.
-        rewrite { path.gsub!(%r{\A/api}, '') }
-
-        # Don't proxy requests without them matching on the condition in the block.
-        constraints { |request| Version.new('v1').matches?(request) }
-
-        # With the rewrite on, requests you /api/users will go to
-        # http://users-service.intern/users.
-        from %r{\A/api/users},    to: 'http://users-service.intern'
-
-        # Requests go to http://payments-service.intern/payments.
-        from %r{\A/api/payments}, to: 'http://payments-service.intern'
-      end
-
-section.center
-  pre: code.ruby contenteditable=true
-    '
-      module Macro
-        class Appplication
-          middleware.use ApiGateway
+          serializer ||= serializer_class_cache[objects.first.class][]
+          serializer.new(objects)
         end
       end
 
 section.center
-  p Pre-process requests
-section.center
-  p Proxy the request
+  h1 👆
 
-section data-background="#000" data-transition="fade-in fade-out"
-section data-background="https://media.giphy.com/media/A06UFEx8jxEwU/giphy.gif"
+section.center
+  h1 ✌️
+
+section.center data-background="#000"
+  h2 Error Responses (JSON)
+
+section.center
+  p Choose a format and stick with it!
+
+section data-background="#000"
+  h2 Ideas
+  ul
+    li.fragment No string messages
+    li.fragment Field errors with error details
+    li.fragment CONSISTENCY
+
+section.center data-background="#000"
+  p Being an API, you have one great constraint.
+
+section.center data-background="#F00"
+  p You're not the one to worry about presenting the errors.
+
+section.center data-background="#F00"
+  p Only providing them.
+
+section.center data-background="#000"
+  p Which means, we can treat all the errors the same.
+
+section.center
+  h1 👆
+
+section.center
+  p Let your application crash.
+
+section.center
+  h1 ✌️
+
+section.center
+  p Catch it and render the response.
+
+section.center
+  h1 🍻
+
+section.center
+  p Enjoy your substance of choice<span class="fragment">, moderately!</span>
+
+section.center
+  pre: code.ruby contenteditable=true
+    '
+      ActionController::API.rescue_from
+
+section.center
+  pre: code.ruby contenteditable=true
+    '
+      ActionController::Base.rescue_from
+
+section.center
+  h1 👓
+
+section.center
+section.center
+  h1 🕶
